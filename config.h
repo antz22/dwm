@@ -15,7 +15,7 @@ static const unsigned int gappov    = 23;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro Regular:size=18", "Iosevka Nerd Font:pixelsize=14:antialias=true:autohint=true" };
+static const char *fonts[]          = { "Source Code Pro Regular:size=21", "Iosevka Nerd Font:pixelsize=26:antialias=true:autohint=true" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
@@ -121,13 +121,19 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_space,  spawn,          SHCMD("dmenu_run") },
 	{ MODKEY|ShiftMask,             XK_space,      setlayout,      {0} }, 
-	{ MODKEY|ShiftMask,			        XK_o,      spawn,		   SHCMD("firefox") },
-	{ MODKEY|ShiftMask,			        XK_s,      spawn,		   SHCMD("nautilus") },
-	{ MODKEY,			                  XK_i,      spawn,		   SHCMD("trello --force-device-scale-factor=1.5") },
+	{ MODKEY|ShiftMask,			    XK_o,      spawn,		   SHCMD("firefox") },
+	{ MODKEY,			            XK_o,      spawn,		   SHCMD("brave --force-device-scale-factor=1.5") },
+	{ MODKEY|ShiftMask,			    XK_s,      spawn,		   SHCMD("nautilus") },
+	{ MODKEY,			            XK_s,      spawn,		   SHCMD("st -e gotop") },
+	{ MODKEY,			            XK_i,      spawn,		   SHCMD("trello --force-device-scale-factor=1.5") },
 	{ MODKEY,			            XK_r,      spawn,		   SHCMD("st -e ranger") },
 	{ MODKEY,			            XK_y,      spawn,		   SHCMD("flameshot gui -p ~/Pics/screenshots") },
-	{ MODKEY|ShiftMask,			  XK_y,      spawn,		   SHCMD("flameshot full -p ~/Pics/screenshots") },
+	{ MODKEY|ShiftMask,			    XK_y,      spawn,		   SHCMD("flameshot full -p ~/Pics/screenshots") },
 	{ MODKEY,			            XK_v,      spawn,		   SHCMD("code") },
+	{ MODKEY,			            XK_a,      spawn,		   SHCMD("st -e calcurse") },
+	{ MODKEY|ShiftMask,			    XK_a,      spawn,		   SHCMD("pavucontrol") },
+	{ MODKEY,			            XK_m,      spawn,		   SHCMD("st -e ncmpcpp") },
+	{ MODKEY|ShiftMask,		        XK_m,      spawn,		   SHCMD("discord") },
 	{ MODKEY,                       XK_semicolon,      spawn,  SHCMD("skippy-xd") },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
@@ -158,6 +164,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY,                       XK_F2,      spawn,  SHCMD("dm-tool switch-to-greeter") },
+	{ MODKEY|ShiftMask,             XK_F2,      spawn,  SHCMD("sudo systemctl hibernate") },
 	//{ MODKEY,                       XK_F2,      spawn,  SHCMD("screenkey -s small --scr 1 -p fixed -g 600x100+2573+1330 --opacity .9 --font-color white") },
 	//{ MODKEY,                       XK_F3,      spawn,  SHCMD("killall screenkey") },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
