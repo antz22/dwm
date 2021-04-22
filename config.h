@@ -15,7 +15,8 @@ static const unsigned int gappov    = 23;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Source Code Pro Regular:size=21", "Iosevka Nerd Font:pixelsize=26:antialias=true:autohint=true" };
+//static const char *fonts[]          = { "Source Code Pro Regular:size=21", "Iosevka Nerd Font:pixelsize=26:antialias=true:autohint=true" };
+static const char *fonts[]          = { "Terminus:size=20", "Iosevka Nerd Font:pixelsize=26:antialias=true:autohint=true" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
