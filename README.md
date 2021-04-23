@@ -18,9 +18,11 @@ dwm is another minimalist piece of software from suckless.org - specifically, a 
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
 - [barpadding](https://dwm.suckless.org/patches/barpadding/)
 - [statuspadding](https://dwm.suckless.org/patches/statuspadding/)
-- [barheight]
+- [barheight](https://dwm.suckless.org/patches/bar_height/)
 
 ## Patches to look at in the future:
+
+- [notitle](https://dwm.suckless.org/patches/notitle/)
 
 
 Inspiration from @ChristianChiarulli!
