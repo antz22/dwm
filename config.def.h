@@ -124,7 +124,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_space,  spawn,          SHCMD("dmenu_run") },
+	{ MODKEY,                       XK_space,  spawn,          SHCMD("dmenu_run -c -l 20") },
 	{ MODKEY|ShiftMask,             XK_space,      setlayout,      {0} }, 
 	{ MODKEY|ShiftMask,			    XK_o,      spawn,		   SHCMD("firefox") },
 	{ MODKEY,			            XK_o,      spawn,		   SHCMD("brave --force-device-scale-factor=1.5") },
