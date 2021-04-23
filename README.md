@@ -16,12 +16,12 @@ dwm is another minimalist piece of software from suckless.org - specifically, a 
 - [no border](https://dwm.suckless.org/patches/noborder/)
 
 - [hide vacant tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
-
+- [barpadding](https://dwm.suckless.org/patches/barpadding/)
+- [statuspadding](https://dwm.suckless.org/patches/statuspadding/)
+- [barheight]
 
 ## Patches to look at in the future:
 
-- [barpadding](https://dwm.suckless.org/patches/barpadding/)
-- [statuspadding](https://dwm.suckless.org/patches/statuspadding/)
 
 Inspiration from @ChristianChiarulli!
 
