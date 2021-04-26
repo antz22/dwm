@@ -142,6 +142,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,			    XK_a,      spawn,		   SHCMD("pavucontrol") },
 	{ MODKEY,			            XK_m,      spawn,		   SHCMD("st -e ncmpcpp") },
 	{ MODKEY|ShiftMask,		        XK_m,      spawn,		   SHCMD("discord") },
+	{ MODKEY|ShiftMask,		        XK_n,      spawn,		   SHCMD("spotify --force-device-scale-factor=1.5") },
 	{ MODKEY,                       XK_semicolon,      spawn,  SHCMD("skippy-xd") },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
