@@ -20,7 +20,9 @@ dwm is another minimalist piece of software from suckless.org - specifically, a 
 - [barheight](https://dwm.suckless.org/patches/bar_height/)
 - [cfacts](https://dwm.suckless.org/patches/cfacts/)
 - [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/)
-I had to use a verison of vanitygaps that combined with cfacts. was a pain to patch manually (https://dwm.suckless.org/patches/vanitygaps/dwm-cfacts-vanitygaps-6.2_combo.diff)
+- [pertag](https://dwm.suckless.org/patches/pertag/)
+- [resizecorners](https://dwm.suckless.org/patches/resizecorners/)
+I had to use a verison of vanitygaps that combined with cfacts. was a pain to patch manually (https://dwm.suckless.org/patches/vanitygaps/dwm-cfacts-vanitygaps-6.2_combo.diff) 
 
 ## Patches to look at in the future:
 
@@ -36,3 +38,4 @@ Then read the first line - usually that's where you'll be missing a semicolon or
 Inspiration from @ChristianChiarulli!
 
 Starting 4/21/2021...
+
