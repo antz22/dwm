@@ -62,6 +62,8 @@ static const int statmonval = 0;
 
 /* tagging (12 tags lol)    */
 static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " };
+/* alternative tagging (prolly cuz u have 12 tags) */
+static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
 
 static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
@@ -72,15 +74,15 @@ static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just 
 /* tag selection colors - right is bg if selected, other is foreground */
 static const char *tagsel[][2] = {
   { "#737aa2", col_gray1 },
-  { "#7dcfff", col_gray1 },
-  { "#9d7cd8", col_gray1 },
   { "#ff9e64", col_gray1 },
   { "#e0af68", col_gray1 },
-  { "#9ece6a", col_gray1 },
-  { "#73daca", col_gray1 },
   { "#f7768e", col_gray1 },
   { "#db4b4b", col_gray1 },
+  { "#9ece6a", col_gray1 },
+  { "#73daca", col_gray1 },
+  { "#7dcfff", col_gray1 },
   { "#7aa2f7", col_gray1 },
+  { "#9d7cd8", col_gray1 },
   { "#c0caf5", col_gray1 },
   { "#394b70", col_gray1 },
 };
@@ -206,6 +208,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_n,      spawn,		   SHCMD("spotify --force-device-scale-factor=1.5") },
   /* d */
 	{ MODKEY,                       XK_d,      spawn,		   SHCMD("rofi -show drun") },
+  /* p */
+	{ MODKEY|ShiftMask,             XK_p,      togglealttag,   {0} },
 	{ MODKEY,                       XK_semicolon,      spawn,  SHCMD("skippy-xd") },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
