@@ -63,6 +63,45 @@ static const int statmonval = 0;
 /* tagging (12 tags lol)    */
 static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " };
 
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 50;	/* how far above the bottom of the bar the line should appear (here set to user_bh) */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+
+
+/* tag selection colors - right is bg if selected, other is foreground */
+static const char *tagsel[][2] = {
+  { "#737aa2", col_gray1 },
+  { "#7dcfff", col_gray1 },
+  { "#9d7cd8", col_gray1 },
+  { "#ff9e64", col_gray1 },
+  { "#e0af68", col_gray1 },
+  { "#9ece6a", col_gray1 },
+  { "#73daca", col_gray1 },
+  { "#f7768e", col_gray1 },
+  { "#db4b4b", col_gray1 },
+  { "#7aa2f7", col_gray1 },
+  { "#c0caf5", col_gray1 },
+  { "#394b70", col_gray1 },
+};
+
+
+/* back to normal colors */
+//static const char *tagsel[][2] = {
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+  //{ "#eeeeee", col_gray1 },
+//};
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class

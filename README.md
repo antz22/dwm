@@ -22,7 +22,10 @@ dwm is another minimalist piece of software from suckless.org - specifically, a 
 - [vanitygaps](https://dwm.suckless.org/patches/vanitygaps/)
 - [pertag](https://dwm.suckless.org/patches/pertag/)
 - [resizecorners](https://dwm.suckless.org/patches/resizecorners/)
+- [rainbowtags](https://dwm.suckless.org/patches/rainbowtags/)
+- [underlinetags](https://dwm.suckless.org/patches/underlinetags/)
 I had to use a verison of vanitygaps that combined with cfacts. was a pain to patch manually (https://dwm.suckless.org/patches/vanitygaps/dwm-cfacts-vanitygaps-6.2_combo.diff) 
+Also, dwm.c was slightly edited to draw tagschemes[i] color for all tags, not just the selected one
 
 ## Patches to look at in the future:
 
