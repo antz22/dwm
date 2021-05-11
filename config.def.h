@@ -40,6 +40,8 @@ static const char col_blue[]        = "#81a1c1";
 static const char col_magenta[]     = "#c586c0";
 static const char col_white[]       = "#abb2bf";
 static const char col_bg_alt[]      = "#292d38";
+static const unsigned int baralpha = 0;
+static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -52,6 +54,12 @@ static const char *colors[][3]      = {
 
     [SchemeInfoSel]  = { col_gray4, col_gray1,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
     [SchemeInfoNorm]  = { col_gray2, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+};
+
+static const unsigned int alphas[][3]      = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */

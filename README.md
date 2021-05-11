@@ -27,6 +27,7 @@ I had to use a verison of vanitygaps that combined with cfacts. was a pain to pa
 ## Patches to look at in the future:
 
 - [notitle](https://dwm.suckless.org/patches/notitle/)
+- [alpha](https://dwm.suckless.org/patches/alpha/)
 
 ## Notes
 
