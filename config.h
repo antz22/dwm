@@ -20,7 +20,7 @@ static const int vertpad            = 15;       /* vertical padding of bar (gap 
 static const int sidepad            = 15;       /* horizontal padding of bar (gap between screen and bar)*/
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar (gap between bar and bar content)*/
 static const int vertpadbar         = 1;        /* vertical padding for statusbar (gap between bar and bar content)*/
-static const char *fonts[]          = { "Terminus:size=20", "Iosevka Nerd Font:pixelsize=29:antialias=true:autohint=true" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=20", "Iosevka Nerd Font:pixelsize=29:antialias=true:autohint=true" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
@@ -29,7 +29,8 @@ static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@D
 static const char col_gray1[]       = "#11121D"; // for bg
 static const char col_gray2[]       = "#11121D"; // for tags
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee"; // mostly for text, fg
+//static const char col_gray4[]       = "#eeeeee"; // mostly for text, fg
+static const char col_gray4[]       = "#A1A8B2"; // mostly for text, fg
 static const char col_cyan[]        = "#005577";
 //static const char col_purple[]      = "#5a5aa4";
 static const char col_purple[]      = "#9C7CD7";
@@ -73,17 +74,17 @@ static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just 
 
 /* tag selection colors - right is bg if selected, other is foreground */
 static const char *tagsel[][2] = {
-  { "#737aa2", col_gray1 },
-  { "#ff9e64", col_gray1 },
   { "#e0af68", col_gray1 },
-  { "#f7768e", col_gray1 },
-  { "#db4b4b", col_gray1 },
+  { "#ff9e64", col_gray1 },
   { "#9ece6a", col_gray1 },
   { "#73daca", col_gray1 },
   { "#7dcfff", col_gray1 },
   { "#7aa2f7", col_gray1 },
   { "#9d7cd8", col_gray1 },
+  { "#f7768e", col_gray1 },
+  { "#db4b4b", col_gray1 },
   { "#c0caf5", col_gray1 },
+  { "#737aa2", col_gray1 },
   { "#394b70", col_gray1 },
 };
 
@@ -148,6 +149,9 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+#define STATUSBAR "dwmblocks"
+
+
 /* commands */
 static const char *termcmd[]  = { "st", NULL };
 
@@ -175,9 +179,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_space,  spawn,          SHCMD("dmenu_run -c -l 20") },
-	{ MODKEY|ShiftMask,             XK_space,      setlayout,      {0} }, 
+	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} }, 
 	/* o */
-	{ MODKEY,                       XK_o,      spawn,		   SHCMD("brave --force-device-scale-factor=1.5") },
+	{ MODKEY,                       XK_o,      spawn,		   SHCMD("brave --force-device-scale-factor=1.4") },
 	{ MODKEY|ShiftMask,             XK_o,      spawn,		   SHCMD("firefox") },
 	/* s */
 	{ MODKEY,                       XK_s,      spawn,		   SHCMD("st -e gotop") },
@@ -265,7 +269,9 @@ static Button buttons[] = {
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button1,        sigstatusbar,   {.i = 1} },
+	{ ClkStatusText,        0,              Button2,        sigstatusbar,   {.i = 2} },
+	{ ClkStatusText,        0,              Button3,        sigstatusbar,   {.i = 3} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
