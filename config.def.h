@@ -7,20 +7,20 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 2;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 8;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 0;     /* 0 means no systray */
-static const unsigned int gappih    = 23;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 23;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 23;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 23;       /* vert outer gap between windows and screen edge */
+static const int showsystray        = 0;        /* 0 means no systray */
+static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 53;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const int vertpad            = 15;       /* vertical padding of bar (gap between screen and bar)*/
-static const int sidepad            = 15;       /* horizontal padding of bar (gap between screen and bar)*/
+static const int user_bh            = 45;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int vertpad            = 0;        /* vertical padding of bar (gap between screen and bar)*/
+static const int sidepad            = 0;        /* horizontal padding of bar (gap between screen and bar)*/
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar (gap between bar and bar content)*/
-static const int vertpadbar         = 1;        /* vertical padding for statusbar (gap between bar and bar content)*/
-static const char *fonts[]          = { "Terminus:size=20", "Iosevka Nerd Font:pixelsize=29:antialias=true:autohint=true" };
+static const int vertpadbar         = 4;        /* vertical padding for statusbar (gap between bar and bar content)*/
+static const char *fonts[]          = { "Terminus:size=16", "Iosevka Nerd Font:pixelsize=26:antialias=true:autohint=true" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
@@ -29,7 +29,8 @@ static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@D
 static const char col_gray1[]       = "#11121D"; // for bg
 static const char col_gray2[]       = "#11121D"; // for tags
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee"; // mostly for text, fg
+//static const char col_gray4[]       = "#eeeeee"; // mostly for text, fg
+static const char col_gray4[]       = "#A1A8B2"; // mostly for text, fg
 static const char col_cyan[]        = "#005577";
 //static const char col_purple[]      = "#5a5aa4";
 static const char col_purple[]      = "#9C7CD7";
@@ -44,10 +45,10 @@ static const char col_bg_alt[]      = "#292d38";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_purple,  col_purple  },
+	[SchemeSel]  = { col_gray4, col_red,  col_red  },
 	[SchemeStatus]  = { col_gray4, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 
-	[SchemeTagsSel]  = { col_gray2, col_purple,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_gray2, col_red,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
     [SchemeTagsNorm]  = { col_gray4, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
 
     [SchemeInfoSel]  = { col_gray4, col_gray1,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
@@ -63,27 +64,27 @@ static const int statmonval = 0;
 /* tagging (12 tags lol)    */
 static const char *tags[] = { "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  " };
 /* alternative tagging (prolly cuz u have 12 tags) */
-static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" };
+static const char *tagsalt[] = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 ", " 10 ", " 11 ", " 12 " };
 
 static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
-static const unsigned int ulinevoffset	= 50;	/* how far above the bottom of the bar the line should appear (here set to user_bh) */
+static const unsigned int ulinevoffset	= 42;	/* how far above the bottom of the bar the line should appear (here set to user_bh) */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 
 /* tag selection colors - right is bg if selected, other is foreground */
 static const char *tagsel[][2] = {
-  { "#737aa2", col_gray1 },
-  { "#ff9e64", col_gray1 },
   { "#e0af68", col_gray1 },
-  { "#f7768e", col_gray1 },
-  { "#db4b4b", col_gray1 },
+  { "#ff9e64", col_gray1 },
   { "#9ece6a", col_gray1 },
   { "#73daca", col_gray1 },
   { "#7dcfff", col_gray1 },
   { "#7aa2f7", col_gray1 },
   { "#9d7cd8", col_gray1 },
+  { "#f7768e", col_gray1 },
+  { "#db4b4b", col_gray1 },
   { "#c0caf5", col_gray1 },
+  { "#737aa2", col_gray1 },
   { "#394b70", col_gray1 },
 };
 
@@ -245,6 +246,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_F6,                     11)
 	{ MODKEY,                       XK_F2,      spawn,  SHCMD("dm-tool switch-to-greeter") },
 	{ MODKEY|ShiftMask,             XK_F2,      spawn,  SHCMD("sudo systemctl hibernate") },
+	{ MODKEY,                       XK_F3,      spawn,  SHCMD("reboot") },
+	{ MODKEY|ControlMask,           XK_w,       spawn,  SHCMD("st -e nmtui") },
 	//{ MODKEY,                       XK_F2,      spawn,  SHCMD("screenkey -s small --scr 1 -p fixed -g 600x100+2573+1330 --opacity .9 --font-color white") },
 	//{ MODKEY,                       XK_F3,      spawn,  SHCMD("killall screenkey") },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
