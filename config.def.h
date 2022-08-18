@@ -15,19 +15,29 @@ static const unsigned int gappov    = 23;       /* vert outer gap between window
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 53;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const int vertpad            = 15;       /* vertical padding of bar (gap between screen and bar)*/
-static const int sidepad            = 15;       /* horizontal padding of bar (gap between screen and bar)*/
+static const int user_bh            = 60;       /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+//static const int user_bh            = 53;       [> 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height <]
+static const int vertpad            = 0;       /* vertical padding of bar (gap between screen and bar)*/
+//static const int vertpad            = 15;       [> vertical padding of bar (gap between screen and bar)<]
+static const int sidepad            = 0;       /* horizontal padding of bar (gap between screen and bar)*/
+//static const int sidepad            = 15;       [> horizontal padding of bar (gap between screen and bar)<]
 static const int horizpadbar        = 1;        /* horizontal padding for statusbar (gap between bar and bar content)*/
-static const int vertpadbar         = 1;        /* vertical padding for statusbar (gap between bar and bar content)*/
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=20", "Iosevka Nerd Font:pixelsize=29:antialias=true:autohint=true" };
+static const int vertpadbar         = 2;        /* vertical padding for statusbar (gap between bar and bar content)*/
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=19", "Iosevka Nerd Font:pixelsize=29:antialias=true:autohint=true" };
 static const char *upvol[]          = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[]        = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[]        = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
 //static const char col_gray1[]       = "#232731";#11121D || #2B2F37
 //static const char col_gray2[]       = "#333333";
-static const char col_gray1[]       = "#11121D"; // for bg
-static const char col_gray2[]       = "#11121D"; // for tags
+
+// for light backgrounds
+//static const char col_gray1[]       = "#2E3440"; // for bg
+//static const char col_gray2[]       = "#2E3440"; // for tags
+
+// for dark backgrounds
+static const char col_gray1[]       = "#141C21"; // for bg
+static const char col_gray2[]       = "#141C21"; // for tags
+
 static const char col_gray3[]       = "#bbbbbb";
 //static const char col_gray4[]       = "#eeeeee"; // mostly for text, fg
 static const char col_gray4[]       = "#A1A8B2"; // mostly for text, fg
@@ -169,8 +179,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
+	/*{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },*/
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
@@ -196,12 +206,14 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_w,      spawn,		   SHCMD("meteo") },
 	/* r */
 	{ MODKEY,                       XK_r,      spawn,		   SHCMD("st -e ranger") },
-	{ MODKEY|ShiftMask,             XK_r,      spawn,		   SHCMD("com.github.sgpthomas.hourglass") },
+	//{ MODKEY|ShiftMask,             XK_r,      spawn,		   SHCMD("com.github.sgpthomas.hourglass") },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,		   SHCMD("~/.config/rofi/bin/launcher_zathura_2") },
 	/* y */
-	{ MODKEY,                       XK_y,      spawn,		   SHCMD("flameshot gui -p ~/Pics/screenshots") },
-	{ MODKEY|ShiftMask,             XK_y,      spawn,		   SHCMD("flameshot full -p ~/Pics/screenshots") },
+	{ MODKEY,                       XK_y,      spawn,		   SHCMD("flameshot gui") },
+	{ MODKEY|ShiftMask,             XK_y,      spawn,		   SHCMD("flameshot gui -p ~/Pics/screenshots") },
 	/* v */
 	{ MODKEY,                       XK_v,      spawn,		   SHCMD("code") },
+	{ MODKEY|ShiftMask,             XK_v,      spawn,		   SHCMD("~/.config/rofi/bin/launcher_calc") },
 	/* a */
 	{ MODKEY,                       XK_a,      spawn,		   SHCMD("st -e calcurse") },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,		   SHCMD("pavucontrol") },
@@ -211,7 +223,7 @@ static Key keys[] = {
 	/* n */
 	{ MODKEY|ShiftMask,             XK_n,      spawn,		   SHCMD("spotify --force-device-scale-factor=1.5") },
   /* d */
-	{ MODKEY,                       XK_d,      spawn,		   SHCMD("rofi -show drun") },
+	{ MODKEY,                       XK_d,      spawn,		   SHCMD("~/.config/rofi/bin/launcher_colorful") },
   /* p */
 	{ MODKEY|ShiftMask,             XK_p,      togglealttag,   {0} },
 	{ MODKEY,                       XK_semicolon,      spawn,  SHCMD("skippy-xd") },
@@ -249,6 +261,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_F6,                     11)
 	{ MODKEY,                       XK_F2,      spawn,  SHCMD("dm-tool switch-to-greeter") },
 	{ MODKEY|ShiftMask,             XK_F2,      spawn,  SHCMD("sudo systemctl hibernate") },
+	{ MODKEY,                       XK_F4,      spawn,  SHCMD("sudo systemctl suspend") },
 	//{ MODKEY,                       XK_F2,      spawn,  SHCMD("screenkey -s small --scr 1 -p fixed -g 600x100+2573+1330 --opacity .9 --font-color white") },
 	//{ MODKEY,                       XK_F3,      spawn,  SHCMD("killall screenkey") },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
